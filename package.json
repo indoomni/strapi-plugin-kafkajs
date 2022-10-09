@@ -1,0 +1,48 @@
+{
+  "name": "@indoomni/strapi-plugin-kafkajs",
+  "version": "1.1.9",
+  "description": "Wrapper for KafkaJS library to be used with Strapi apps.",
+  "strapi": {
+    "name": "kafkajs",
+    "description": "Wrapper for KafkaJS library to be used with Strapi apps. You are going to need a live Kafka instance/cluster to be running. The Strapi app will be able to act as publisher and/or subscriber. As an added bonus, you can setup multiple publishers as well as subscribers within the same Strapi app.",
+    "kind": "plugin",
+    "displayName": "Strapi KafkaJS library wrapper"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "@strapi/strapi": "^4.0.0"
+  },
+  "author": "Iman Sjamhudi <indoomni@gmail.com>",
+  "maintainers": [
+    "Iman Sjamhudi <indoomni@gmail.com>"
+  ],
+  "engines": {
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT",
+  "main": "strapi-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indoomni/strapi-plugin-kafkajs.git"
+  },
+  "keywords": [
+    "strapi",
+    "plugin",
+    "kafka",
+    "kafkajs",
+    "publisher",
+    "subscriber",
+    "pub",
+    "sub",
+    "producer",
+    "consumer"
+  ],
+  "bugs": {
+    "url": "https://github.com/indoomni/strapi-plugin-kafkajs/issues"
+  },
+  "homepage": "https://github.com/indoomni/strapi-plugin-kafkajs#readme"
+}
