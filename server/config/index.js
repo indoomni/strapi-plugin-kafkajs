@@ -23,6 +23,9 @@ module.exports = {
     // Publishers..
     try {
       const { publishers } = config;
+      console.log('Publisher:', publishers);
+      if (!publishers || publishers.length <= 0)
+        throw new Error();
       publishers.forEach(publisher => {
         if (publisher.enabled) {
           if (
@@ -53,6 +56,9 @@ module.exports = {
     // Subscribers..
     try {
       const { subscribers } = config;
+      console.log('Subscribers:', subscribers);
+      if (!subscribers || subscribers.length <= 0)
+        throw new Error();
       subscribers.forEach(subscriber => {
         if (subscriber.enabled) {
           if (
