@@ -1,6 +1,6 @@
 # 🚀 Getting started with Strapi
 
-Wrapper for KafkaJS library to be used with Strapi apps. You are going to need a live [Kafka](https://kafka.apache.org/) instance/cluster to be running. The Strapi app will be able to act as publisher and/or subscriber.
+Wrapper for tulios' [KafkaJS](https://www.npmjs.com/package/kafkajs) library to be used with Strapi apps. You are going to need a live [Kafka](https://kafka.apache.org/) instance/cluster to be running. The Strapi app will be able to act as publisher and/or subscriber.
 <br/>
 As added bonus, you can setup multiple publishers as well as subscribers within the same Strapi app; e.g., one for logging, one for notifications, one for... You name it.
 <br/><br/>
@@ -148,6 +148,7 @@ module.exports = {
 
 ## 📚 Learn more
 
+- [KafkaJS](https://www.npmjs.com/package/kafkajs) - tulios' excellent KafkaJS library page on npmjs.com.
 - [Resource center](https://strapi.io/resource-center) - Strapi resource center.
 - [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
 - [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
