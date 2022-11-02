@@ -28,26 +28,21 @@ module.exports = {
       publishers.forEach(publisher => {
         if (publisher.enabled) {
           if (
-            typeof publisher.clientId !== 'string' &&
-            typeof publisher.topic !== 'string' &&
-            !publisher.brokers
+            typeof publisher.clientId === 'string' &&
+            typeof publisher.topic === 'string' &&
+            publisher.brokers
           ) {
-            throw new Error(
+            strapi.kafka.publishers.push(publisher);
+            console.log(
               `Kafka publisher ${strapi.inspect(
-                publisher,
-              )} configuration is invalid!`,
+                publisher.clientId,
+              )} configuration is valid!`,
             );
           }
-          strapi.kafka.publishers.push(publisher);
-          console.log(
-            `Kafka publisher ${strapi.inspect(
-              publisher.clientId,
-            )} configuration is valid!`,
-          );
         }
       });
     } catch (err) {
-      strapi.log.error(
+      strapi.log.warn(
         `Kafka publisher got disabled or configuration is invalid!`,
       );
     }
@@ -61,26 +56,21 @@ module.exports = {
       subscribers.forEach(subscriber => {
         if (subscriber.enabled) {
           if (
-            typeof subscriber.clientId !== 'string' &&
-            typeof subscriber.topic !== 'string' &&
-            !subscriber.brokers
+            typeof subscriber.clientId === 'string' &&
+            typeof subscriber.topic === 'string' &&
+            subscriber.brokers
           ) {
-            throw new Error(
+            strapi.kafka.subscribers.push(subscriber);
+            console.log(
               `Kafka subscriber ${strapi.inspect(
-                subscriber,
-              )} configuration is invalid!`,
+                subscriber.clientId,
+              )} configuration is valid!`,
             );
           }
-          strapi.kafka.subscribers.push(subscriber);
-          console.log(
-            `Kafka subscriber ${strapi.inspect(
-              subscriber.clientId,
-            )} configuration is valid!`,
-          );
         }
       });
     } catch (err) {
-      strapi.log.error(
+      strapi.log.warn(
         `Kafka subscriber got disabled or configuration is invalid!`,
       );
     }

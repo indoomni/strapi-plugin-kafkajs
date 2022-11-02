@@ -1,4 +1,4 @@
-console.log('Kafka routes..');
+// console.log('Kafka routes..');
 
 module.exports = [
   {
