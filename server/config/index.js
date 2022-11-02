@@ -20,59 +20,71 @@ module.exports = {
     };
 
     // Publishers..
-    try {
-      const { publishers } = config;
-      // console.log('Publishers:', publishers);
-      // if (!publishers || publishers.length <= 0)
-      //   throw new Error();
-      publishers.forEach(publisher => {
-        if (publisher.enabled) {
+    const { publishers } = config;
+    // console.log('Publishers:', publishers);
+    publishers.forEach(publisher => {
+      const {
+        enabled,
+        clientId,
+        topic,
+        brokers,
+      } = publisher;
+      try {
+        if (enabled) {
           if (
-            typeof publisher.clientId === 'string' &&
-            typeof publisher.topic === 'string' &&
-            publisher.brokers
+            typeof clientId === 'string' &&
+            typeof topic === 'string' &&
+            brokers.length > 0
           ) {
             strapi.kafka.publishers.push(publisher);
             console.log(
-              `Kafka publisher ${strapi.inspect(
-                publisher.clientId,
-              )} configuration is valid!`,
+              `Kafka publisher ${clientId} configuration is valid!`,
             );
           }
+        } else {
+          strapi.log.warn(
+            `Kafka publisher ${clientId} got disabled!`,
+          );
         }
-      });
-    } catch (err) {
-      strapi.log.warn(
-        `Kafka publisher got disabled or configuration is invalid!`,
-      );
-    }
+      } catch (err) {
+        strapi.log.warn(
+          `Kafka publisher ${clientId} got disabled or configuration is invalid!`,
+        );
+      }
+    });
 
     // Subscribers..
-    try {
-      const { subscribers } = config;
-      // console.log('Subscribers:', subscribers);
-      // if (!subscribers || subscribers.length <= 0)
-      //   throw new Error();
-      subscribers.forEach(subscriber => {
-        if (subscriber.enabled) {
+    const { subscribers } = config;
+    // console.log('Subscribers:', subscribers);
+    subscribers.forEach(subscriber => {
+      const {
+        enabled,
+        clientId,
+        topic,
+        brokers,
+      } = subscriber;
+      try {
+        if (enabled) {
           if (
-            typeof subscriber.clientId === 'string' &&
-            typeof subscriber.topic === 'string' &&
-            subscriber.brokers
+            typeof clientId === 'string' &&
+            typeof topic === 'string' &&
+            brokers.length > 0
           ) {
             strapi.kafka.subscribers.push(subscriber);
             console.log(
-              `Kafka subscriber ${strapi.inspect(
-                subscriber.clientId,
-              )} configuration is valid!`,
+              `Kafka subscriber ${clientId} configuration is valid!`,
             );
           }
+        } else {
+          strapi.log.warn(
+            `Kafka subscriber ${clientId} got disabled!`,
+          );
         }
-      });
-    } catch (err) {
-      strapi.log.warn(
-        `Kafka subscriber got disabled or configuration is invalid!`,
-      );
-    }
+      } catch (err) {
+        strapi.log.warn(
+          `Kafka subscriber ${clientId} got disabled or configuration is invalid!`,
+        );
+      }
+    });
   },
 };

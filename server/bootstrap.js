@@ -6,8 +6,8 @@ const util = require('util');
 
 module.exports = async ({ strapi }) => {
   const { publishers } = strapi.kafka;
-  try {
-    await publishers.forEach(async publisher => {
+  publishers.forEach(async publisher => {
+    try {
       if (
         (publisher.producer = await strapi
           .plugin('kafkajs')
@@ -19,6 +19,7 @@ module.exports = async ({ strapi }) => {
             publisher.clientId,
           )}`,
         );
+
         // Send message to topic in background..
         // setTimeout(async () => {
         const { topic } = publisher;
@@ -29,17 +30,17 @@ module.exports = async ({ strapi }) => {
           .publish(publisher.clientId, topic, message);
         // }, 2000);
       }
-    });
-  } catch (err) {
-    strapi.log.error(err);
-  }
+    } catch (err) {
+      strapi.log.error(err);
+    }
+  });
   strapi.log.info(
     `Bootstrapped publishers: ${util.inspect(publishers)}`,
   );
 
   const { subscribers } = strapi.kafka;
-  try {
-    subscribers.forEach(async subscriber => {
+  subscribers.forEach(async subscriber => {
+    try {
       if (
         (subscriber.consumer = await strapi
           .plugin('kafkajs')
@@ -51,11 +52,11 @@ module.exports = async ({ strapi }) => {
             subscriber.clientId,
           )}`,
         );
+
         // Subscribe to topic in background..
         // setTimeout(async () => {
         let eachMessage;
         if (subscriber.handler) {
-          console.log('Current directory:', __dirname);
           const dirname = strapi.dirs.dist.src;
           const handler = require(`${dirname}/${subscriber.handler}`);
           eachMessage = handler.eachMessage;
@@ -97,10 +98,10 @@ module.exports = async ({ strapi }) => {
           );
         // }, 0);
       }
-    });
-  } catch (err) {
-    strapi.log.error(err);
-  }
+    } catch (err) {
+      strapi.log.error(err);
+    }
+  });
   strapi.log.info(
     `Bootstrapped subscribers: ${util.inspect(
       subscribers,
