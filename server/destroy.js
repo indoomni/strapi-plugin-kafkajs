@@ -2,9 +2,9 @@
 
 const util = require('util');
 
-module.exports = async ({ strapi }) => {
-  // console.log('Kafka destroy..');
+// console.log('Kafka destroy..');
 
+module.exports = async ({ strapi }) => {
   const { publishers } = strapi.kafka;
   try {
     await publishers.forEach(async publisher => {
@@ -22,9 +22,7 @@ module.exports = async ({ strapi }) => {
     strapi.log.error(err);
   }
   strapi.log.info(
-    `---- Destroyed publishers: ${util.inspect(
-      publishers,
-    )} ----`,
+    `Destroyed publishers: ${util.inspect(publishers)}`,
   );
 
   const { subscribers } = strapi.kafka;
@@ -44,8 +42,6 @@ module.exports = async ({ strapi }) => {
     strapi.log.error(err);
   }
   strapi.log.info(
-    `---- Destroyed subscribers: ${util.inspect(
-      subscribers,
-    )} ----`,
+    `Destroyed subscribers: ${util.inspect(subscribers)}`,
   );
 };

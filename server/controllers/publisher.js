@@ -1,7 +1,6 @@
 'use strict';
 
 const { Kafka } = require('kafkajs');
-const util = require('util');
 
 module.exports = ({ strapi }) => ({
   init: async config => {

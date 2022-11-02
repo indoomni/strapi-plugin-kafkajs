@@ -2,7 +2,7 @@
 
 const util = require('util');
 
-console.log('Kafka bootstrap..');
+// console.log('Kafka bootstrap..');
 
 module.exports = async ({ strapi }) => {
   const { publishers } = strapi.kafka;
@@ -34,9 +34,7 @@ module.exports = async ({ strapi }) => {
     strapi.log.error(err);
   }
   strapi.log.info(
-    `++++ Bootstrapped publishers: ${util.inspect(
-      publishers,
-    )} ++++`,
+    `Bootstrapped publishers: ${util.inspect(publishers)}`,
   );
 
   const { subscribers } = strapi.kafka;
@@ -104,8 +102,8 @@ module.exports = async ({ strapi }) => {
     strapi.log.error(err);
   }
   strapi.log.info(
-    `++++ Bootstrapped subscribers: ${util.inspect(
+    `Bootstrapped subscribers: ${util.inspect(
       subscribers,
-    )} ++++`,
+    )}`,
   );
 };

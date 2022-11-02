@@ -1,8 +1,7 @@
 'use strict';
 
-const util = require('util');
-
-console.log('Kafka config..');
+// console.log('Kafka config..');
+// console.log('Config ->', strapi.config.server.kafkajs);
 
 module.exports = {
   default: ({ env }) => {
@@ -23,7 +22,7 @@ module.exports = {
     // Publishers..
     try {
       const { publishers } = config;
-      console.log('Publisher:', publishers);
+      // console.log('Publishers:', publishers);
       // if (!publishers || publishers.length <= 0)
       //   throw new Error();
       publishers.forEach(publisher => {
@@ -34,14 +33,14 @@ module.exports = {
             !publisher.brokers
           ) {
             throw new Error(
-              `Kafka publisher ${util.inspect(
+              `Kafka publisher ${strapi.inspect(
                 publisher,
               )} configuration is invalid!`,
             );
           }
           strapi.kafka.publishers.push(publisher);
           console.log(
-            `Kafka publisher ${util.inspect(
+            `Kafka publisher ${strapi.inspect(
               publisher.clientId,
             )} configuration is valid!`,
           );
@@ -56,7 +55,7 @@ module.exports = {
     // Subscribers..
     try {
       const { subscribers } = config;
-      console.log('Subscribers:', subscribers);
+      // console.log('Subscribers:', subscribers);
       // if (!subscribers || subscribers.length <= 0)
       //   throw new Error();
       subscribers.forEach(subscriber => {
@@ -67,14 +66,14 @@ module.exports = {
             !subscriber.brokers
           ) {
             throw new Error(
-              `Kafka subscriber ${util.inspect(
+              `Kafka subscriber ${strapi.inspect(
                 subscriber,
               )} configuration is invalid!`,
             );
           }
           strapi.kafka.subscribers.push(subscriber);
           console.log(
-            `Kafka subscriber ${util.inspect(
+            `Kafka subscriber ${strapi.inspect(
               subscriber.clientId,
             )} configuration is valid!`,
           );
