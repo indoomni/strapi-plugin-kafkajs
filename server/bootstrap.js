@@ -22,14 +22,16 @@ module.exports = async ({ strapi }) => {
           );
 
           // Send message to topic in background..
-          // setTimeout(async () => {
-          const { topic } = publisher;
-          const message = "Hello, it's Kafka!";
-          await strapi
-            .plugin('kafkajs')
-            .controller('publisher')
-            .publish(publisher.clientId, topic, message);
-          // }, 2000);
+          if (publisher.sendHello) {
+            // setTimeout(async () => {
+            const { topic } = publisher;
+            const message = "Hello, it's Kafka!";
+            await strapi
+              .plugin('kafkajs')
+              .controller('publisher')
+              .publish(publisher.clientId, topic, message);
+            // }, 2000);
+          }
         }
       } catch (err) {
         strapi.log.error(err);

@@ -1,6 +1,6 @@
 {
   "name": "@indoomni/strapi-plugin-kafkajs",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "description": "Wrapper for KafkaJS library to be used with Strapi apps.",
   "strapi": {
     "name": "kafkajs",
