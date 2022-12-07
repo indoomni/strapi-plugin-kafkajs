@@ -33,8 +33,10 @@ module.exports = ({ strapi }) => ({
         topic,
         messages: [{ value: message }],
       });
+      return true;
     } catch (err) {
       strapi.log.error(err);
     }
+    return false;
   },
 });
