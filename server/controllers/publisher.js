@@ -35,7 +35,7 @@ module.exports = ({ strapi }) => ({
       });
       return true;
     } catch (err) {
-      strapi.log.error(err);
+      // strapi.log.error(err);
     }
     return false;
   },
