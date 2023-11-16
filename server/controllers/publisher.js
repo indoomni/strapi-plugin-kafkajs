@@ -24,14 +24,15 @@ module.exports = ({ strapi }) => ({
     );
     await publisher.producer.disconnect();
   },
-  publish: async (clientId, topic, message) => {
+  publish: async (clientId, topic, message, headers) => {
     try {
       const publisher = strapi.kafka.publishers.find(
         pub => pub.clientId === clientId,
       );
+      const msg = headers ? { headers, value: message } : { value: message }
       await publisher.producer.send({
         topic,
-        messages: [{ value: message }],
+        messages: [msg],
       });
       return true;
     } catch (err) {
